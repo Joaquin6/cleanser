@@ -1,6 +1,6 @@
 {
   "name": "cleanser",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Joaquin Briceno <joaquinbriceno1@gmail.com>",
   "license": "ISC",
   "description": "A utility to safely clean a directory from clutter such as log files, modules, generated tests and more.",
