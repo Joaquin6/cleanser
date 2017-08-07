@@ -1,0 +1,40 @@
+test*.js
+build
+esdoc
+logs
+node_modules
+npm-debug.log
+reports
+src/external/build
+report-results.html
+.idea
+.DS_Store
+.nyc_output
+
+# Sublime Text Files
+*.sublime-project
+*.sublime-workspace
+
+# Yarn Files
+yarn-error.log
+
+# Redis Dump Files
+dump.rdb
+
+*~
+test/binary/tmp/*
+test/tmp/*
+test/dialects/sqlite/test.sqlite
+test/sqlite/test.sqlite
+
+coverage
+coverage-*
+site
+docs/api/tmp.md
+ssce.js
+sscce.js
+coverage
+.vscode/
+
+*.sublime*
+esdoc
