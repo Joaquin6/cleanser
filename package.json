@@ -44,15 +44,15 @@
     "rimraf": "^2.6.1"
   },
   "devDependencies": {
-    "grunt-cli": "^0.1.13",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-nodeunit": "^0.4.1",
-    "grunt-contrib-watch": "^0.6.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-nodeunit": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
     "grunt-menu": "^1.0.1",
-    "grunt-mocha-cli": "^1.11.0",
-    "grunt-sg-release": "^0.2.4",
-    "jshint-stylish": "^1.0.0",
-    "load-grunt-tasks": "^1.0.0",
+    "grunt-mocha-cli": "^3.0.0",
+    "grunt-sg-release": "^1.0.0",
+    "jshint-stylish": "^2.2.1",
+    "load-grunt-tasks": "^3.5.2",
     "time-grunt": "^1.0.0"
   }
 }
