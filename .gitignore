@@ -21,12 +21,6 @@ yarn-error.log
 # Redis Dump Files
 dump.rdb
 
-*~
-test/binary/tmp/*
-test/tmp/*
-test/dialects/sqlite/test.sqlite
-test/sqlite/test.sqlite
-
 coverage
 coverage-*
 site
