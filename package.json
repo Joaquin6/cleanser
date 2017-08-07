@@ -1,0 +1,33 @@
+{
+  "name": "cleanser",
+  "version": "0.0.1",
+  "description": "A utility to safely clean a directory from clutter such as log files, modules, generated tests and more.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joaquin6/cleanser.git"
+  },
+  "keywords": [
+    "cleanser",
+    "clean-dir",
+    "clean",
+    "directory",
+    "util",
+    "bin",
+    "shell",
+    "rm",
+    "remove",
+    "delete",
+    "file",
+    "files"
+  ],
+  "author": "Joaquin Briceno <joaquinbriceno1@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joaquin6/cleanser/issues"
+  },
+  "homepage": "https://github.com/Joaquin6/cleanser#readme"
+}
