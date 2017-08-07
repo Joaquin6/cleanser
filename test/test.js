@@ -1,31 +1,34 @@
 /*global describe, it, beforeEach, afterEach */
 'use strict';
 
-var assert = require('assert');
-var fs = require('fs');
-var path = require('path');
+const assert = require('assert');
+const fs = require('fs');
+const path = require('path');
 
-var cleanDir = require('../');
-
-
-// ---
+const cleanDir = require('../');
 
 
 describe('cleanser', function () {
+  this.timeout(20000);
 
-  // Defines some test file names to be used on tests
-  var files = [
+  /**
+   * Defines some test file names to be used on tests
+   * @type {Array}
+   */
+  const files = [
     path.join('.tmp', 'README.md'),
     path.join('.tmp', 'package.json'),
     path.join('.tmp', '.gitignore')
   ];
 
   beforeEach(function () {
-
-    // creates a .tmp folder
+    /**
+     * creates a .tmp folder
+     */
     fs.mkdirSync('.tmp');
-
-    // writes some test files
+    /**
+     * writes some test files
+     */
     files.forEach(function (filename) {
       fs.writeFileSync(filename, '');
     });
@@ -34,10 +37,6 @@ describe('cleanser', function () {
   afterEach(function () {
     fs.rmdirSync('.tmp');
   });
-
-
-  // ---
-
 
   it('should clean a directory', function (done) {
     assert.equal(fs.readdirSync('.tmp').length, 3);
@@ -48,17 +47,18 @@ describe('cleanser', function () {
   });
 
   it('should do nothing if directory is already clean', function (done) {
-
-    // cleans up .tmp folder
+    /**
+     * cleans up .tmp folder
+     */
     files.forEach(function (filename) {
       fs.unlinkSync(filename);
     });
-
-    // tests an empty folder
+    /**
+     * tests an empty folder
+     */
     cleanDir('.tmp', function () {
       assert(true, 'Does not throw errors');
       done();
     });
   });
-
 });

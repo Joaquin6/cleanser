@@ -3,6 +3,7 @@
 /logs/
 /node_modules/
 /coverage/
+/.tmp/
 npm-debug.log
 reports
 src/external/build
