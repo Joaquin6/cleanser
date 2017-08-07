@@ -16,7 +16,7 @@ function Cleanser (dir, callback) {
       if (files.length === 0) return cb();
       const filesDirs = files.map(file => pathJoin(dir, file));
       async.each(filesDirs, (fileDir, cb) => {
-        console.log(`\tCleaning Dir: ${fileDir}`);
+        .npmrcconsole.log(`\tCleaning Dir: ${fileDir}`);
         rimraf(fileDir, cb);
       }, cb);
     }
