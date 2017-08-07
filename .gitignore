@@ -1,8 +1,8 @@
-test*.js
-build
-esdoc
-logs
-node_modules
+/build/
+/esdoc/
+/logs/
+/node_modules/
+/coverage/
 npm-debug.log
 reports
 src/external/build
@@ -21,14 +21,4 @@ yarn-error.log
 # Redis Dump Files
 dump.rdb
 
-coverage
-coverage-*
-site
-docs/api/tmp.md
-ssce.js
-sscce.js
-coverage
-.vscode/
-
 *.sublime*
-esdoc
