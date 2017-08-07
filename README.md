@@ -30,7 +30,7 @@ $ cleanser
 Cleans a given directory:
 
 ```sh
-$ cleanser ~/path-to-clean
+$ cleanser ~/path/to/clean
 ```
 
 Displays the help message:
@@ -45,7 +45,7 @@ $ cleanser --help
 ```js
 var cleanser = require('cleanser');
 
-cleanser('~/path-to-clean', function (err) {});
+cleanser('~/path/to/clean', function (err) {});
 ```
 
 
@@ -55,6 +55,6 @@ ISC © [Joaquin Briceno](http://joaquinbriceno.com/)
 
 [npm-url]: https://www.npmjs.com/package/cleanser
 [npm-image]: https://badge.fury.io/js/cleanser.svg
-[travis-url]: https://travis-ci.org/ruyadorno/cleanser
-[travis-image]: https://travis-ci.org/ruyadorno/cleanser.svg?branch=master
+[travis-url]: https://travis-ci.org/Joaquin6/cleanser
+[travis-image]: https://travis-ci.org/Joaquin6/cleanser.svg?branch=master
 [rimraf-url]: https://www.npmjs.com/package/rimraf
