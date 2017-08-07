@@ -24,28 +24,28 @@ $ npm install -g cleanser
 Cleans up the current working directory:
 
 ```sh
-$ cleandir
+$ cleanser
 ```
 
 Cleans a given directory:
 
 ```sh
-$ cleandir ~/path-to-clean
+$ cleanser ~/path-to-clean
 ```
 
 Displays the help message:
 
 ```sh
-$ cleandir --help
+$ cleanser --help
 ```
 
 
 ### Programmatic API
 
 ```js
-var cleandir = require('clean-dir');
+var cleanser = require('cleanser');
 
-cleandir('~/path-to-clean', function (err) {});
+cleanser('~/path-to-clean', function (err) {});
 ```
 
 
@@ -54,7 +54,7 @@ cleandir('~/path-to-clean', function (err) {});
 ISC © [Joaquin Briceno](http://joaquinbriceno.com/)
 
 [npm-url]: https://www.npmjs.com/package/cleanser
-[npm-image]: https://badge.fury.io/js/clean-dir.svg
-[travis-url]: https://travis-ci.org/ruyadorno/clean-dir
-[travis-image]: https://travis-ci.org/ruyadorno/clean-dir.svg?branch=master
+[npm-image]: https://badge.fury.io/js/cleanser.svg
+[travis-url]: https://travis-ci.org/ruyadorno/cleanser
+[travis-image]: https://travis-ci.org/ruyadorno/cleanser.svg?branch=master
 [rimraf-url]: https://www.npmjs.com/package/rimraf
