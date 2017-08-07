@@ -9,7 +9,7 @@
     "type": "git",
     "url": "git+https://github.com/Joaquin6/cleanser.git"
   },
-  "homepage": "https://github.com/Joaquin6/cleanser#readme"
+  "homepage": "https://github.com/Joaquin6/cleanser#readme",
   "bugs": {
     "url": "https://github.com/Joaquin6/cleanser/issues"
   },
@@ -32,5 +32,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "rimraf": "^2.6.1"
   }
 }
