@@ -3,7 +3,7 @@
 'use strict';
 
 var meow = require('meow');
-var cleanDir = require('./');
+var cleanDir = require('..');
 
 var cli = meow({
   help: [

@@ -36,11 +36,23 @@
     "cleanser": "./bin/cli.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt test"
   },
   "dependencies": {
     "async": "^2.5.0",
     "meow": "^3.7.0",
     "rimraf": "^2.6.1"
+  },
+  "devDependencies": {
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-menu": "^1.0.1",
+    "grunt-mocha-cli": "^1.11.0",
+    "grunt-sg-release": "^0.2.4",
+    "jshint-stylish": "^1.0.0",
+    "load-grunt-tasks": "^1.0.0",
+    "time-grunt": "^1.0.0"
   }
 }
