@@ -1,14 +1,17 @@
 {
   "name": "cleanser",
   "version": "0.0.1",
+  "author": "Joaquin Briceno <joaquinbriceno1@gmail.com>",
+  "license": "ISC",
   "description": "A utility to safely clean a directory from clutter such as log files, modules, generated tests and more.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Joaquin6/cleanser.git"
+  },
+  "homepage": "https://github.com/Joaquin6/cleanser#readme"
+  "bugs": {
+    "url": "https://github.com/Joaquin6/cleanser/issues"
   },
   "keywords": [
     "cleanser",
@@ -24,10 +27,10 @@
     "file",
     "files"
   ],
-  "author": "Joaquin Briceno <joaquinbriceno1@gmail.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Joaquin6/cleanser/issues"
+  "bin": {
+    "cleanser": "cli.js"
   },
-  "homepage": "https://github.com/Joaquin6/cleanser#readme"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }
