@@ -62,10 +62,10 @@ function Cleanser (dir, callback) {
       files.forEach(src => {
         if (_.findIndex(opts.include, src))
           filesDirs.push(pathJoin(opts.dir, src));
-        else debug(`Ignoring Source Path: ${src}`);
+        else debug('Ignoring Source Path: %s', src);
       });
       async.each(filesDirs, (src, cb) => {
-        debug(`Deleting Source Path: ${src}`);
+        debug('Deleting Source Path: %s', src);
         rimraf(src, cb);
       }, cb);
     }
