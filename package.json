@@ -35,12 +35,17 @@
     "cleanser": "cli.js"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "test:debug": "cross-env DEBUG=cleanser npm test"
   },
   "dependencies": {
     "async": "^2.5.0",
+    "cross-env": "^5.0.4",
+    "debug": "^2.6.8",
     "meow": "^3.7.0",
-    "rimraf": "^2.6.1"
+    "rc": "^1.2.1",
+    "rimraf": "^2.6.1",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
