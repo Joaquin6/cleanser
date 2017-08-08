@@ -35,14 +35,26 @@
     "cleanser": "cli.js"
   },
   "scripts": {
+    "inspector": "./node_modules/.bin/node-inspector --save-live-edit &",
+    "start": "node cli.js",
+    "start:debug": "cross-env DEBUG=cleanser npm start",
+    "start:inspect": "npm run inspector && cross-env DEBUG=cleanser node --inspect --debug-brk cli.js &",
+    "stop": "killall node",
     "test": "grunt test",
-    "test:debug": "cross-env DEBUG=cleanser npm test"
+    "test:debug": "cross-env DEBUG=cleanser npm test",
+    "test:inspect": "npm run inspector && cross-env DEBUG=cleanser mocha --inspect --debug-brk &"
   },
   "dependencies": {
     "async": "^2.5.0",
+    "clear": "^0.0.1",
+    "clui": "^0.3.6",
+    "colors": "^1.1.2",
     "cross-env": "^5.0.4",
     "debug": "^2.6.8",
+    "figlet": "^1.2.0",
+    "inquirer": "^3.2.1",
     "meow": "^3.7.0",
+    "minimist": "^1.2.0",
     "rc": "^1.2.1",
     "rimraf": "^2.6.1",
     "underscore": "^1.8.3"
@@ -59,6 +71,7 @@
     "jshint-stylish": "^2.2.1",
     "load-grunt-tasks": "^3.5.2",
     "mocha": "^3.5.0",
+    "node-inspector": "^1.1.1",
     "time-grunt": "^1.0.0"
   }
 }
