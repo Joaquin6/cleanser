@@ -1,6 +1,7 @@
 'use strict';
 
 const readdir = require('fs').readdir;
+const statsSync = require('fs').statSync;
 const pathJoin = require('path').join;
 
 let pkgname = require('./package.json').name;
@@ -59,11 +60,19 @@ function Cleanser (dir, callback) {
     (files, cb) => {
       if (files.length === 0) return cb();
       let filesDirs = [];
-      files.forEach(src => {
+
+      for (let x = 0; x < files.length; x++) {
+        let src = pathJoin(opts.dir, files[x]);
+        const stats = statsSync(src);
+
+        if (stats.isDirectory() && src === pkgname)
+          continue;
+        if (stats.isDirectory() && _.findIndex(opts.ignore, src))
+          continue;
         if (_.findIndex(opts.include, src))
-          filesDirs.push(pathJoin(opts.dir, src));
-        else debug('Ignoring Source Path: %s', src);
-      });
+          filesDirs.push(src);
+      }
+
       async.each(filesDirs, (src, cb) => {
         debug('Deleting Source Path: %s', src);
         rimraf(src, cb);
