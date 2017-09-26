@@ -9,7 +9,10 @@ const colors = require('colors');
 const async = require('async');
 const rimraf = require('rimraf');
 const pkgname = require('./package.json').name;
-const debug = require('debug')(pkgname);
+const buglog = require('./src/lib/buglog');
+const defaultConfigs = require('./config.json');
+
+const debug = buglog('class');
 
 function _validateParentModule(options) {
   const srcPath = pathResolve(options.dir, '..', '..');
@@ -24,39 +27,17 @@ function _validateParentModule(options) {
 }
 
 class Cleanser {
-  constructor (dir, callback) {
+  constructor (dir = process.cwd(), callback) {
     this.setup = false;
     this.name = pkgname;
-    this.config = {
-      dir: '.',
-      ignore: [
-        '.git',
-        '.github',
-        '.gitlab',
-        '.cleanserrc',
-        '.travis.yml',
-        pkgname,
-        'package.json',
-        'server.js',
-        'index.js',
-        '*.md',
-        'LICENSE'
-      ],
-      include: [
-        '.idea',
-        '.DS_Store',
-        '.tmp',
-        'npm-debug.log',
-        'yarn-error.log'
-      ]
-    };
+    this.config = defaultConfigs;
     this.sourcePaths = {
       directories: [],
       files: [],
       removing: [],
       ignoring: []
     };
-    this.suppliedOptions = dir;
+    this.suppliedDirectory = dir;
 
     this.getDefaultConfigs = _.bind(this.getDefaultConfigs, this);
     this.getSourcePaths = _.bind(this.getSourcePaths, this);
@@ -71,14 +52,14 @@ class Cleanser {
   }
 
   setConfigurations (callback) {
-    debug(`\nSupplied Options: %O`, this.suppliedOptions);
+    debug(`\nSupplied Working Directory: %O`, this.suppliedDirectory);
     this.options = require('rc')(this.name, this.config);
 
-    if (_.isObject(this.suppliedOptions))
-      this.options = _.extend(this.options, this.suppliedOptions);
-    else if (_.isString(this.suppliedOptions)) {
+    if (_.isObject(this.suppliedDirectory))
+      this.options = _.extend(this.options, this.suppliedDirectory);
+    else if (_.isString(this.suppliedDirectory)) {
       this.options = _.extend(this.options, {
-        dir: this.suppliedOptions
+        dir: this.suppliedDirectory
       });
     }
 

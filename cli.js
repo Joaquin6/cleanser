@@ -18,25 +18,50 @@ const colors = require('colors'),
   Utility = require('./src/lib/utils'),
   prompter = require('./src/lib/prompter'),
   supportsColor = require('./src/lib/supports-color'),
+  defaultConfigs = require('./config.json'),
   Cleanser = require('.'),
   pkgname = 'cleanser',
-  debug = buglog('cli');
+  debug = buglog('cli'),
+  dirBaseRcExists = false;
 
-let cleanser, cli;
+let cleanser, cli, dirBase, baseDirs;
 
 function readEnvironment() {
   debug('Reading Environment');
+  return new Promise((resolve, reject) => {
+    /** Check if terminal supports colors */
+    if (supportsColor) {
+      debug('\n%s: %o\n', chalk.green('Terminal supports colors'), supportsColor);
+      if (supportsColor.hasBasic)
+        debug('%s', chalk.green('Terminal supports basic colors'));
+      if (supportsColor.has256)
+        debug('%s', chalk.green('Terminal supports 256 colors'));
+      if (supportsColor.has16m)
+        debug('%s', chalk.green('Terminal supports 16 million colors (truecolor)'));
+    } else debug('\nTerminal doesn\'t supports colors: %o\n', supportsColor);
 
-  /** Check if terminal supports colors */
-  if (supportsColor) {
-    debug('\n%s: %o\n', chalk.green('Terminal supports colors'), supportsColor);
-    if (supportsColor.hasBasic)
-      debug('\n%s', chalk.green('Terminal supports basic colors'));
-    if (supportsColor.has256)
-      debug('\n%s', chalk.green('Terminal supports 256 colors'));
-    if (supportsColor.has16m)
-      debug('\n%s', chalk.green('Terminal supports 16 million colors (truecolor)'));
-  } else debug('\nTerminal doesn\'t supports colors: %o\n', supportsColor);
+    debug(`Working Directory: ${chalk.yellow(process.cwd())}`);
+
+    /** Get the Current Dir Base */
+    dirBase = Utility.getCurrentDirectoryBase();
+    debug('%s: %s\n', chalk.green('Working Directory Base'), chalk.blue.bold(dirBase));
+
+    /** Determine if the current dir base has an RC file */
+    let dirBaseRcExistsResult = chalk.red('false');
+    if (Utility.directoryExists('.cleanserrc')) {
+      dirBaseRcExists = true;
+      dirBaseRcExistsResult = chalk.green('true');
+    }
+    debug(`Working Directory Contains a ${chalk.blue.bold('.cleanserrc')} File: %s\n`, dirBaseRcExistsResult);
+
+    /** Get Current Base Directories */
+    Utility.getBaseDirectories(defaultConfigs, function(err, sources) {
+      if (err) return reject(err);
+      baseDirs = sources;
+      debug('\nCurrent Base Directories:\n%O\n', baseDirs);
+      resolve(sources);
+    });
+  });
 }
 
 function commenceIntroduction() {
@@ -68,24 +93,23 @@ function initializeCleanser() {
       },
       help: Utility.getHelpMessage()
     });
+
     debug('CLI Object:\n%O\n', cli);
+
     if (cli.input[0] === 'help') {
-      resolve(cli.showHelp(0));
-    } else {
-      cleanser = new Cleanser(cli.input[0], err => {
-        if (err) throw err;
-        resolve();
-      });
+      return resolve(cli.showHelp(0));
     }
+
+    cleanser = new Cleanser(cli.input[0], err => {
+      if (err) throw err;
+      resolve();
+    });
+
   });
 }
 
 function promptQuestions() {
   debug('Prompting Questions');
-  // if (files.directoryExists('.git')) {
-  //   console.log(chalk.red('Already a git repository!'));
-  //   process.exit();
-  // }
   return new Promise((resolve, reject) => {
     /**
      * Prompt questions to double check that the include paths are
@@ -145,8 +169,8 @@ function answersHandler(err, res = {}) {
   });
 }
 
-readEnvironment();
-commenceIntroduction()
+readEnvironment()
+  .then(commenceIntroduction)
   .then(initializeCleanser)
   .then(promptQuestions)
   .then(answersHandler)
