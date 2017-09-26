@@ -15,14 +15,6 @@ const helpmsg = `
     $ cleanser . --includes coverage, package-lock.json
   `;
 
-  module.exports = function(clear) {
-    if (clear !== false) {
-      process.stdout.write('\033[2J');
-    }
-    process.stdout.write('\033[0f');
-  };
-
-
 module.exports = {
   capitalizeFirstLetter: function(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
