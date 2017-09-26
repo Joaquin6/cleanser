@@ -37,7 +37,7 @@
   "scripts": {
     "inspector": "./node_modules/.bin/node-inspector --save-live-edit &",
     "start": "node cli.js",
-    "start:debug": "cross-env DEBUG=cleanser npm start",
+    "start:debug": "cross-env DEBUG=cleanser:* FORCE_COLOR=1 npm start",
     "start:inspect": "npm run inspector && cross-env DEBUG=cleanser node --inspect --debug-brk cli.js &",
     "stop": "killall node",
     "test": "grunt test",
@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "async": "^2.5.0",
+    "chalk": "^2.1.0",
     "clear": "^0.0.1",
     "clui": "^0.3.6",
     "colors": "^1.1.2",
@@ -57,6 +58,7 @@
     "minimist": "^1.2.0",
     "rc": "^1.2.1",
     "rimraf": "^2.6.1",
+    "supports-color": "^4.4.0",
     "underscore": "^1.8.3"
   },
   "devDependencies": {

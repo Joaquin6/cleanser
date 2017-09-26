@@ -24,7 +24,6 @@ function _validateParentModule(options) {
 }
 
 class Cleanser {
-
   constructor (dir, callback) {
     this.setup = false;
     this.name = pkgname;
