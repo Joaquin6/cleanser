@@ -3,8 +3,8 @@ const path = require('path');
 
 const helpmsg = `
   Usage
-    $ cleandir            Removes all files from the current folder.
-    $ cleandir <path>     Removes all files from specified dir path.
+    $ cleanser            Removes all files from the current folder.
+    $ cleanser <path>     Removes all files from specified dir path.
 
   Options
     -c, --config          Pass in a configuration file location
@@ -12,7 +12,7 @@ const helpmsg = `
     -G, --ignore          Ignore source paths, avoid deletion
 
   Example
-    $ cleandir . --includes coverage, package-lock.json
+    $ cleanser . --includes coverage, package-lock.json
   `;
 
   module.exports = function(clear) {
