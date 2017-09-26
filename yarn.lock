@@ -2989,12 +2989,6 @@ supports-color@^4.0.0:
   dependencies:
     has-flag "^2.0.0"
 
-supports-color@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-4.4.0.tgz#883f7ddabc165142b2a61427f3352ded195d1a3e"
-  dependencies:
-    has-flag "^2.0.0"
-
 tap-mocha-reporter@^2.0.0:
   version "2.0.1"
   resolved "https://registry.npmjs.org/tap-mocha-reporter/-/tap-mocha-reporter-2.0.1.tgz#c70316173d6e3a16c58e1ba92d5d6cd8de58a12e"

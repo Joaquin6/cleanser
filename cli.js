@@ -1,44 +1,47 @@
 #!/usr/bin/env node
 
-const colors = require('colors');
-const chalk = require('chalk');
-const supportsColor = require('supports-color');
-const clear = require('clear');
-const CLI = require('clui');
-const figlet = require('figlet');
-const inquirer = require('inquirer');
-const Spinner = CLI.Spinner;
-const meow = require('meow');
-const _ = require('underscore');
-const Utility = require('./src/lib/utils');
-const prompter = require('./src/lib/prompter');
-const Cleanser = require('.');
-const pkgname = require('./package.json').name;
-const debug = require('debug')(pkgname);
+/**
+ * By default, we will always force colors on the terminal
+ * @type {Number}
+ */
+process.env.FORCE_COLOR = 1;
 
-let helpmsg = `
-  Usage
-    $ cleandir            Removes all files from the current folder.
-    $ cleandir <path>     Removes all files from specified dir path.
+const colors = require('colors'),
+  chalk = require('chalk'),
+  clear = require('clear'),
+  CLI = require('clui'),
+  figlet = require('figlet'),
+  inquirer = require('inquirer'),
+  Spinner = CLI.Spinner,
+  meow = require('meow'),
+  _ = require('underscore'),
+  buglog = require('./src/lib/buglog'),
+  Utility = require('./src/lib/utils'),
+  prompter = require('./src/lib/prompter'),
+  supportsColor = require('./src/lib/supports-color'),
+  Cleanser = require('.'),
+  pkgname = 'cleanser',
+  debug = buglog('cli');
 
-  Options
-    -c, --config          Pass in a configuration file location
-    -i, --includes        Include source paths to delete
-    -G, --ignore          Ignore source paths, avoid deletion
-
-  Example
-    $ cleandir . --includes coverage, package-lock.json
-  `;
 let cleanser, cli;
 
+function readEnvironment() {
+  debug('Reading Environment');
+
+  /** Check if terminal supports colors */
+  if (supportsColor) {
+    debug('\n%s: %o\n', chalk.green('Terminal supports colors'), supportsColor);
+    if (supportsColor.hasBasic)
+      debug('\n%s', chalk.green('Terminal supports basic colors'));
+    if (supportsColor.has256)
+      debug('\n%s', chalk.green('Terminal supports 256 colors'));
+    if (supportsColor.has16m)
+      debug('\n%s', chalk.green('Terminal supports 16 million colors (truecolor)'));
+  } else debug('\nTerminal doesn\'t supports colors: %o\n', supportsColor);
+}
+
 function commenceIntroduction() {
-  if (supportsColor)
-    debug('Terminal supports color');
-  if (supportsColor.has256)
-    debug('Terminal supports 256 colors');
-  if (supportsColor.has16m)
-    debug('Terminal supports 16 million colors (truecolor)');
-  debug('Commensing Introduction');
+  debug(chalk.green('Commensing Introduction'));
   return new Promise((resolve, reject) => {
     clear();
 
@@ -64,9 +67,9 @@ function initializeCleanser() {
         c: 'config',
         i: 'includes'
       },
-      help: helpmsg
+      help: Utility.getHelpMessage()
     });
-    debug('CLI Object: %O', cli);
+    debug('CLI Object:\n%O\n', cli);
     if (cli.input[0] === 'help') {
       resolve(cli.showHelp(0));
     } else {
@@ -80,6 +83,10 @@ function initializeCleanser() {
 
 function promptQuestions() {
   debug('Prompting Questions');
+  // if (files.directoryExists('.git')) {
+  //   console.log(chalk.red('Already a git repository!'));
+  //   process.exit();
+  // }
   return new Promise((resolve, reject) => {
     /**
      * Prompt questions to double check that the include paths are
@@ -139,6 +146,7 @@ function answersHandler(err, res = {}) {
   });
 }
 
+readEnvironment();
 commenceIntroduction()
   .then(initializeCleanser)
   .then(promptQuestions)
