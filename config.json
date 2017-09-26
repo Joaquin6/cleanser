@@ -1,0 +1,31 @@
+{
+  "dir": ".",
+  "ignore": [
+    ".git",
+    ".github",
+    ".gitlab",
+    ".cleanserrc",
+    ".editorconfig",
+    ".gitignore",
+    ".jshintrc",
+    ".npmrc",
+    ".nvmrc",
+    "*rc",
+    ".travis.yml",
+    "package.json",
+    "server.js",
+    "index.js",
+    "*.md",
+    "yarn.lock",
+    "package-lock.json",
+    "LICENSE"
+  ],
+  "include": [
+    ".idea",
+    ".DS_Store",
+    ".tmp",
+    "npm-debug.log",
+    "yarn-error.log",
+    "node_modules"
+  ]
+}
