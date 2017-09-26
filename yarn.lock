@@ -443,10 +443,6 @@ clean-yaml-object@^0.1.0:
   version "0.1.0"
   resolved "https://registry.npmjs.org/clean-yaml-object/-/clean-yaml-object-0.1.0.tgz#63fb110dc2ce1a84dc21f6d9334876d010ae8b68"
 
-clear@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.npmjs.org/clear/-/clear-0.0.1.tgz#e5186e229d99448179c130311b6f9d30bff6b0ba"
-
 cli-color@0.3.2:
   version "0.3.2"
   resolved "https://registry.npmjs.org/cli-color/-/cli-color-0.3.2.tgz#75fa5f728c308cc4ac594b05e06cc5d80daccd86"

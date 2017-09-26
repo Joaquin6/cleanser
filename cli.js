@@ -8,7 +8,6 @@ process.env.FORCE_COLOR = 1;
 
 const colors = require('colors'),
   chalk = require('chalk'),
-  clear = require('clear'),
   CLI = require('clui'),
   figlet = require('figlet'),
   inquirer = require('inquirer'),
@@ -43,7 +42,7 @@ function readEnvironment() {
 function commenceIntroduction() {
   debug(chalk.green('Commensing Introduction'));
   return new Promise((resolve, reject) => {
-    clear();
+    Utility.clear();
 
     if (process.env.DEBUG && process.env.DEBUG.includes(pkgname)) {
       Error.stackTraceLimit = 50;
