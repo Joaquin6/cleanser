@@ -45,7 +45,7 @@
     "test:inspect": "npm run inspector && cross-env DEBUG=cleanser mocha --inspect --debug-brk &"
   },
   "dependencies": {
-    "async": "^2.5.0",
+    "async": "^3.2.2",
     "chalk": "^2.1.0",
     "clui": "^0.3.6",
     "colors": "^1.1.2",
